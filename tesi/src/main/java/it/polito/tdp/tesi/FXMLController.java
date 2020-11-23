@@ -69,7 +69,7 @@ public class FXMLController {
 
     @FXML
     void simula(ActionEvent event) {
-  
+   
     } 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
