@@ -52,6 +52,77 @@ public class FXMLController {
     
     @FXML
     void magazzino(ActionEvent event) {
+    	
+    	risultato.clear();
+    	if(cmbBox.getValue()==null) {
+    		risultato.setText("Selezionare un importo");
+    		return;
+    	}
+    	
+    	try {
+    		int libripc = Integer.parseInt(libri.getText());
+    		if(libripc>100) {
+    			risultato.clear();
+    			risultato.appendText("La percentuale non può superare il 100%");
+    			btnSimula.setDisable(true);
+    			return;
+    		}
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*libripc)/25+" libri\n");
+    	} catch (NumberFormatException e){
+    		libri.clear();
+    		risultato.setText("Inserire nella casella 'Libri' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		btnSimula.setDisable(true);
+    		return;
+    	}
+    	
+    	try {
+    		int stagepc = Integer.parseInt(stage.getText());
+    		if(stagepc+Integer.parseInt(libri.getText())>100) {
+    			risultato.clear();
+    			risultato.appendText("La percentuale non può superare il 100%");
+    			btnSimula.setDisable(true);
+    			return;
+    		}
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*stagepc)/100+" stage\n");
+    	} catch (NumberFormatException e){
+    		stage.clear();
+    		risultato.appendText("Inserire nella casella 'Stage' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		btnSimula.setDisable(true);
+    		return;
+    	}
+    		
+    	try {
+    		int closepc = Integer.parseInt(close.getText());
+    		if(closepc+Integer.parseInt(libri.getText())+Integer.parseInt(stage.getText())>100) {
+    			risultato.clear();
+    			risultato.appendText("La percentuale non può superare il 100%");
+    			btnSimula.setDisable(true);
+    			return;
+    		}
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*closepc)/30+" close-up\n");
+    	} catch (NumberFormatException e){
+    		close.clear();
+    		risultato.appendText("Inserire nella casella 'Close-up' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		btnSimula.setDisable(true);
+    		return;
+    	}
+    	
+    	try {
+    		int collezionabilipc = Integer.parseInt(collezionabili.getText());
+    		if(collezionabilipc+Integer.parseInt(libri.getText())+Integer.parseInt(stage.getText())+Integer.parseInt(close.getText())>100) {
+    			risultato.clear();
+    			risultato.appendText("La percentuale non può superare il 100%");
+    			btnSimula.setDisable(true);
+    			return;
+    		}
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*collezionabilipc)/15+" collezionabili\n");
+    		btnSimula.setDisable(false);
+    	} catch (NumberFormatException e){
+    		collezionabili.clear();
+    		risultato.appendText("Inserire nella casella 'Collezionabili' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		btnSimula.setDisable(true);
+    		return;
+    	}
 
     }
 
@@ -64,12 +135,14 @@ public class FXMLController {
     	close.clear();
     	collezionabili.clear();
     	cmbBox.setValue(null);
+    	btnSimula.setDisable(true);
 
     }
 
     @FXML
     void simula(ActionEvent event) {
           
+    	
     } 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -89,5 +162,7 @@ public class FXMLController {
         box.add(3000);
         
         cmbBox.getItems().addAll(box);
+        
+        btnSimula.setDisable(true);
     }
 }
