@@ -146,8 +146,12 @@ public class FXMLController {
     @FXML
     void simula(ActionEvent event) {
     	risultato.clear();
+    	try {
     	model.run(Integer.parseInt(libri.getText()), Integer.parseInt(close.getText()), Integer.parseInt(collezionabili.getText()), Integer.parseInt(stage.getText()));
-        risultato.appendText("sono stati soddisfatti il "+model.getSoddisfatti()+"% dei clienti");  
+        risultato.appendText("sono stati soddisfatti il "+model.getSoddisfatti()+"% dei clienti"); }
+    	catch (NumberFormatException e) {
+    		risultato.appendText("controlla di avere inserito valori corretti!");
+    	}
     } 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -165,7 +169,7 @@ public class FXMLController {
         //valori sensati in base alla realtà ed ai dati
         box.add(500);
         box.add(1000);
-        box.add(2000);
+        box.add(1500);
         
         cmbBox.getItems().addAll(box);
         
