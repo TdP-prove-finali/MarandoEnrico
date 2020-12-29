@@ -28,6 +28,8 @@ public class Simulator {
 	
 	public void run(int libri, int close, int collezionabili, int scena) {
 		
+		soddisfatti=0;
+		
 		//all'inizio le rimanenze per ogni reparto sono uguali alla loro capienza massima (scelta dall'utente) 
 			libriRim = libriMax = libri; 
 			closeRim = closeMax = close;
@@ -166,7 +168,7 @@ public class Simulator {
 	}
 }
 	public int getSoddisfatti() {
-		return this.soddisfatti/120*100;
+		return soddisfatti/(120*4)*100;
 	}
 	
 	}

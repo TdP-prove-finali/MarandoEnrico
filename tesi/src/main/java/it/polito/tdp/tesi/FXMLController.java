@@ -145,8 +145,9 @@ public class FXMLController {
 
     @FXML
     void simula(ActionEvent event) {
-          model.run(Integer.parseInt(libri.getText()), Integer.parseInt(close.getText()), Integer.parseInt(collezionabili.getText()), Integer.parseInt(stage.getText()));
-    	
+    	risultato.clear();
+    	model.run(Integer.parseInt(libri.getText()), Integer.parseInt(close.getText()), Integer.parseInt(collezionabili.getText()), Integer.parseInt(stage.getText()));
+        risultato.appendText("sono stati soddisfatti il "+model.getSoddisfatti()+"% dei clienti");  
     } 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
