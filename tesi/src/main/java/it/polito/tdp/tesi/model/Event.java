@@ -6,18 +6,15 @@ public class Event implements Comparable <Event> {
 	
 	
 	public enum EventType {
-		ACQUISTO, ORDINE; //semplice acquisto oppure 'ordine' nel caso si fosse già tentato un acquisto la settimana precedente e si decide di tornare la settimana eseguente essendo il prodotto momentaneamente terminato
-	}
+		ACQUISTO; }
 	
 	private int week;
-	private EventType type;
 	private String tipologia; //tipologia di prodotto da acquistare
 	
 
 	public Event(int week, EventType type, String tipologia) {
 		super();
 		this.week = week;
-		this.type = type;
 		this.tipologia = tipologia;
 	}
 
@@ -26,13 +23,6 @@ public class Event implements Comparable <Event> {
 
 	public int getWeek() {
 		return week;
-	}
-
-
-
-
-	public EventType getType() {
-		return type;
 	}
 
 
@@ -56,7 +46,7 @@ public class Event implements Comparable <Event> {
 
 	@Override
 	public String toString() {
-		return week + " " + type + " " + tipologia;
+		return week + " " + tipologia;
 	}
 	
 	
