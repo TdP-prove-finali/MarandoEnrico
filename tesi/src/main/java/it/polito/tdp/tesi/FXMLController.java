@@ -162,9 +162,10 @@ public class FXMLController {
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
 
         List<Integer> box = new ArrayList<>();
+        //valori sensati in base alla realtà ed ai dati
+        box.add(500);
         box.add(1000);
         box.add(2000);
-        box.add(3000);
         
         cmbBox.getItems().addAll(box);
         

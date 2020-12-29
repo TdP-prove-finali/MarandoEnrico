@@ -19,7 +19,7 @@ public class Simulator {
 
 	
 	private PriorityQueue<Event> queue = new PriorityQueue<>();
-	private int soddisfatti; //contatore per i clienti che riescono ad acquistare
+	private double soddisfatti; //contatore per i clienti che riescono ad acquistare
 	
 	private int prenotatiL=0; //libri prenotati per la settimana successiva
 	private int prenotatiC=0; //close up prenotati per la settimana successiva
@@ -45,7 +45,7 @@ public class Simulator {
 				 double p = Math.random();
 				 
 				 if(i<120) {
-					 if (p<0.7) {
+					 if (p<0.01) {
 						Event e = new Event (j, EventType.ACQUISTO, "libri");
 						this.queue.add(e);
 						i++;
@@ -59,14 +59,14 @@ public class Simulator {
 					 }
 				 	}
 				 if(i<120) {
-					 if (p<0.4) {
+					 if (p<0.37) {
 						 Event e = new Event (j, EventType.ACQUISTO, "close");
 						 this.queue.add(e);
 						 i++;
 					 }
 				 	}
 				 if(i<120) {
-					 if (p<0.1) {
+					 if (p<0.12) {
 						Event e = new Event (j, EventType.ACQUISTO, "scena");
 						this.queue.add(e);
 						i++;
@@ -168,7 +168,8 @@ public class Simulator {
 	}
 }
 	public int getSoddisfatti() {
-		return soddisfatti/(120*4)*100;
+		int risultato = (int) (soddisfatti/(120*4)*100);
+		return risultato;
 	}
 	
 	}
