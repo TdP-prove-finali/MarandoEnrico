@@ -146,8 +146,13 @@ public class FXMLController {
     @FXML
     void simula(ActionEvent event) {
     	risultato.clear();
+    	int libripc = Integer.parseInt(libri.getText());
+    	int closepc = Integer.parseInt(close.getText());
+    	int collezionabilipc = Integer.parseInt(collezionabili.getText());
+    	int stagepc = Integer.parseInt(stage.getText());
+    	
     	try {
-    	model.run(Integer.parseInt(libri.getText()), Integer.parseInt(close.getText()), Integer.parseInt(collezionabili.getText()), Integer.parseInt(stage.getText()));
+    	model.run((cmbBox.getValue()/100*libripc)/25, (cmbBox.getValue()/100*closepc)/30, (cmbBox.getValue()/100*collezionabilipc)/15, (cmbBox.getValue()/100*stagepc)/100);
         risultato.appendText("sono stati soddisfatti il "+model.getSoddisfatti()+"% dei clienti"); }
     	catch (NumberFormatException e) {
     		risultato.appendText("controlla di avere inserito valori corretti!");
@@ -166,10 +171,17 @@ public class FXMLController {
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
 
         List<Integer> box = new ArrayList<>();
-        //valori sensati in base alla realtà ed ai dati
+        //valori sensati in base alla realtà ed ai dati, partendo da un minimo di 100 al di sotto del quale, il problema, sarebbe molto poco realistico
+        box.add(100);
+        box.add(200);
+        box.add(300);
+        box.add(400);
         box.add(500);
+        box.add(600);
+        box.add(700);
+        box.add(800);
+        box.add(900);
         box.add(1000);
-        box.add(1500);
         
         cmbBox.getItems().addAll(box);
         

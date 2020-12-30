@@ -21,14 +21,18 @@ public class Simulator {
 	private PriorityQueue<Event> queue = new PriorityQueue<>();
 	private double soddisfatti; //contatore per i clienti che riescono ad acquistare
 	
-	private int prenotatiL=0; //libri prenotati per la settimana successiva
-	private int prenotatiC=0; //close up prenotati per la settimana successiva
-	private int prenotatiCl=0; //collezionabili prenotati per la settimana successiva
-	private int prenotatiS=0; //scena prenotati per la settimana successiva
+	private int prenotatiL; //libri prenotati per la settimana successiva
+	private int prenotatiC; //close up prenotati per la settimana successiva
+	private int prenotatiCl; //collezionabili prenotati per la settimana successiva
+	private int prenotatiS; //scena prenotati per la settimana successiva
 	
 	public void run(int libri, int close, int collezionabili, int scena) {
 		
 		soddisfatti=0;
+		prenotatiL=0; //libri prenotati per la settimana successiva
+		prenotatiC=0; //close up prenotati per la settimana successiva
+		prenotatiCl=0; //collezionabili prenotati per la settimana successiva
+		prenotatiS=0; //scena prenotati per la settimana successiva
 		
 		//all'inizio le rimanenze per ogni reparto sono uguali alla loro capienza massima (scelta dall'utente) 
 			libriRim = libriMax = libri; 
@@ -101,7 +105,7 @@ public class Simulator {
 					
 				}
 				else {
-					if (Math.random()>0.4) //probabilità che il clienti ordini il prodotto per la settimana prossima
+					if (Math.random()<0.3) //probabilità che il clienti ordini il prodotto per la settimana prossima
 						prenotatiL++;
 					if (prenotatiL<=libriMax) //in caso contrario le prenotazioni per la settimana seguente hanno già raggiunto il numero massimo che avrò in magazzino ed ho quindi esaurito i prodotti anche per la settimana prossima
 						soddisfatti++;
@@ -115,7 +119,7 @@ public class Simulator {
 					
 				}
 				else {
-					if (Math.random()>0.4) //probabilità che il clienti ordini il prodotto per la settimana prossima
+					if (Math.random()<0.3) //probabilità che il clienti ordini il prodotto per la settimana prossima
 						prenotatiCl++;
 					if (prenotatiCl<=collezionabiliMax) //in caso contrario le prenotazioni per la settimana seguente hanno già raggiunto il numero massimo che avrò in magazzino ed ho quindi esaurito i prodotti anche per la settimana prossima
 						soddisfatti++;
@@ -129,7 +133,7 @@ public class Simulator {
 					
 				}
 				else {
-					if (Math.random()>0.4) //probabilità che il clienti ordini il prodotto per la settimana prossima
+					if (Math.random()<0.3) //probabilità che il clienti ordini il prodotto per la settimana prossima
 						prenotatiC++;
 					if (prenotatiC<=closeMax) //in caso contrario le prenotazioni per la settimana seguente hanno già raggiunto il numero massimo che avrò in magazzino ed ho quindi esaurito i prodotti anche per la settimana prossima
 						soddisfatti++;
@@ -143,7 +147,7 @@ public class Simulator {
 					
 				}
 				else {
-					if (Math.random()>0.4) //probabilità che il clienti ordini il prodotto per la settimana prossima
+					if (Math.random()<0.3) //probabilità che il clienti ordini il prodotto per la settimana prossima
 						prenotatiS++;
 					if (prenotatiS<=scenaMax) //in caso contrario le prenotazioni per la settimana seguente hanno già raggiunto il numero massimo che avrò in magazzino ed ho quindi esaurito i prodotti anche per la settimana prossima
 						soddisfatti++;
