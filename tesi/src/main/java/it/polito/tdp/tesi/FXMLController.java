@@ -146,12 +146,12 @@ public class FXMLController {
     @FXML
     void simula(ActionEvent event) {
     	risultato.clear();
-    	int libripc = Integer.parseInt(libri.getText());
-    	int closepc = Integer.parseInt(close.getText());
-    	int collezionabilipc = Integer.parseInt(collezionabili.getText());
-    	int stagepc = Integer.parseInt(stage.getText());
     	
     	try {
+    		int libripc = Integer.parseInt(libri.getText());
+        	int closepc = Integer.parseInt(close.getText());
+        	int collezionabilipc = Integer.parseInt(collezionabili.getText());
+        	int stagepc = Integer.parseInt(stage.getText());
     	model.run((cmbBox.getValue()/100*libripc)/25, (cmbBox.getValue()/100*closepc)/30, (cmbBox.getValue()/100*collezionabilipc)/15, (cmbBox.getValue()/100*stagepc)/100);
         risultato.appendText("sono stati soddisfatti il "+model.getSoddisfatti()+"% dei clienti"); }
     	catch (NumberFormatException e) {
