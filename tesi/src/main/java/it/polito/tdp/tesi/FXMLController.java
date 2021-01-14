@@ -30,7 +30,7 @@ public class FXMLController {
     @FXML // fx:id="cmbBox"
     private ComboBox<Integer> cmbBox; // Value injected by FXMLLoader
 
-    @FXML // fx:id="libri"
+    @FXML // fx:id="libri"  
     private TextField libri; // Value injected by FXMLLoader
 
     @FXML // fx:id="stage"
@@ -64,66 +64,66 @@ public class FXMLController {
     	}
     	
     	try {
-    		int libripc = Integer.parseInt(libri.getText());
+    		double libripc = Double.parseDouble(libri.getText().replace(',', '.').replace('%', ' '));
     		if(libripc>100) {
     			risultato.clear();
     			risultato.appendText("La percentuale non può superare il 100%");
     			btnSimula.setDisable(true);
     			return;
     		}
-    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*libripc)/25+" libri\n");
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*(int) Math.round(libripc)/25)+" libri\n");
     	} catch (NumberFormatException e){
     		libri.clear();
-    		risultato.setText("Inserire nella casella 'Libri' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		risultato.setText("Inserire nella casella 'Libri' un numero per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
     		btnSimula.setDisable(true);
     		return;
     	}
     	
     	try {
-    		int stagepc = Integer.parseInt(stage.getText());
-    		if(stagepc+Integer.parseInt(libri.getText())>100) {
+    		double stagepc = Double.parseDouble(stage.getText().replace(',', '.').replace('%', ' '));
+    		if(stagepc+Double.parseDouble(libri.getText().replace(',', '.').replace('%', ' '))>100) {
     			risultato.clear();
     			risultato.appendText("La percentuale non può superare il 100%");
     			btnSimula.setDisable(true);
     			return;
     		}
-    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*stagepc)/100+" stage\n");
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*(int) Math.round(stagepc)/100)+" stage\n");
     	} catch (NumberFormatException e){
     		stage.clear();
-    		risultato.appendText("Inserire nella casella 'Stage' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		risultato.appendText("Inserire nella casella 'Stage' un numero per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
     		btnSimula.setDisable(true);
     		return;
     	}
     		
     	try {
-    		int closepc = Integer.parseInt(close.getText());
-    		if(closepc+Integer.parseInt(libri.getText())+Integer.parseInt(stage.getText())>100) {
+    		double closepc = Double.parseDouble(close.getText().replace(',', '.').replace('%', ' '));
+    		if(closepc+Double.parseDouble(libri.getText().replace(',', '.').replace('%', ' '))+Double.parseDouble(stage.getText().replace(',', '.').replace('%', ' '))>100) {
     			risultato.clear();
     			risultato.appendText("La percentuale non può superare il 100%");
     			btnSimula.setDisable(true);
     			return;
     		}
-    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*closepc)/30+" close-up\n");
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*(int) Math.round(closepc)/30)+" close-up\n");
     	} catch (NumberFormatException e){
     		close.clear();
-    		risultato.appendText("Inserire nella casella 'Close-up' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		risultato.appendText("Inserire nella casella 'Close-up' un numero per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
     		btnSimula.setDisable(true);
     		return;
     	}
     	
     	try {
-    		int collezionabilipc = Integer.parseInt(collezionabili.getText());
-    		if(collezionabilipc+Integer.parseInt(libri.getText())+Integer.parseInt(stage.getText())+Integer.parseInt(close.getText())>100) {
+    		double collezionabilipc = Double.parseDouble(collezionabili.getText().replace(',', '.').replace('%', ' '));
+    		if(collezionabilipc+Double.parseDouble(libri.getText().replace(',', '.').replace('%', ' '))+Double.parseDouble(stage.getText().replace(',', '.').replace('%', ' '))+Double.parseDouble(close.getText().replace(',', '.').replace('%', ' '))>100) {
     			risultato.clear();
     			risultato.appendText("La percentuale non può superare il 100%");
     			btnSimula.setDisable(true);
     			return;
     		}
-    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*collezionabilipc)/15+" collezionabili\n");
+    		risultato.appendText("Nel magazzino ci sono "+(cmbBox.getValue()/100*(int) Math.round(collezionabilipc)/15)+" collezionabili\n");
     		btnSimula.setDisable(false);
     	} catch (NumberFormatException e){
     		collezionabili.clear();
-    		risultato.appendText("Inserire nella casella 'Collezionabili' un intero (Es. 20) per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
+    		risultato.appendText("Inserire nella casella 'Collezionabili' un numero per poter avviare la simulazione, '0' se non si vuole acquistare il prodotto");
     		btnSimula.setDisable(true);
     		return;
     	}
@@ -148,11 +148,11 @@ public class FXMLController {
     	risultato.clear();
     	
     	try {
-    		int libripc = Integer.parseInt(libri.getText());
-        	int closepc = Integer.parseInt(close.getText());
-        	int collezionabilipc = Integer.parseInt(collezionabili.getText());
-        	int stagepc = Integer.parseInt(stage.getText());
-    	model.run((cmbBox.getValue()/100*libripc)/25, (cmbBox.getValue()/100*closepc)/30, (cmbBox.getValue()/100*collezionabilipc)/15, (cmbBox.getValue()/100*stagepc)/100);
+    		double libripc = Double.parseDouble(libri.getText().replace(',', '.').replace('%', ' '));
+        	double closepc = Double.parseDouble(close.getText().replace(',', '.').replace('%', ' '));
+        	double collezionabilipc = Double.parseDouble(collezionabili.getText().replace(',', '.').replace('%', ' '));
+        	double stagepc = Double.parseDouble(stage.getText().replace(',', '.').replace('%', ' '));
+    	model.run((cmbBox.getValue()/100*(int) Math.round(libripc)/25), (cmbBox.getValue()/100*(int) Math.round(closepc)/30), (cmbBox.getValue()/100*(int) Math.round(collezionabilipc)/15), (cmbBox.getValue()/100*(int) Math.round(stagepc)/100));
         risultato.appendText("sono stati soddisfatti il "+model.getSoddisfatti()+"% dei clienti"); }
     	catch (NumberFormatException e) {
     		risultato.appendText("controlla di avere inserito valori corretti!");
