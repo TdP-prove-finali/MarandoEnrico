@@ -7,6 +7,7 @@ L’applicazione si pone l’obiettivo di aiutare il gestore di un negozio di ma
 Istruzioni per l'istallazione:
 
 -Forkare e clonare sul proprio editor (ad esempio Eclipse) il progetto al link: https://github.com/TdP-prove-finali/MarandoEnrico/tree/master
+(in alternativa scaricare il file zip del programma ed importarlo sull'editor)
 
 -Aprire il progetto e lanciare la classe Main
 
